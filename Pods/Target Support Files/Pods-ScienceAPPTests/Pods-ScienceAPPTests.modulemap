@@ -1,0 +1,6 @@
+framework module Pods_ScienceAPPTests {
+  umbrella header "Pods-ScienceAPPTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
