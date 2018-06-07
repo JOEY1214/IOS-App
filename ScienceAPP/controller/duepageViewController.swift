@@ -88,7 +88,7 @@ class duepageViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.DuetableView.deselectRow(at: indexPath as IndexPath, animated: true)
       
     }
-    //点击删除按钮的响应方法，在这里处理删除的逻辑
+  
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             self.currentDue.remove(at: indexPath.row)
@@ -96,7 +96,7 @@ class duepageViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
          self.DuetableView.reloadData()
     }
-    //返回编辑类型，滑动删除
+    //return editing style - Swipe delete
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.delete
     }

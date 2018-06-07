@@ -1128,10 +1128,10 @@
             </objects>
             <point key="canvasLocation" x="1498" y="1912"/>
         </scene>
-        <!--Test View Controller-->
+        <!--News View Controller-->
         <scene sceneID="BVy-bR-G8G">
             <objects>
-                <viewController id="JIm-Oo-PPV" customClass="testViewController" customModule="ScienceAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JIm-Oo-PPV" customClass="newsViewController" customModule="ScienceAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yzb-KW-12f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1153,7 +1153,7 @@
                                     </scopeButtonTitles>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="test" rowHeight="150" id="8C1-nu-qBp" customClass="testCell" customModule="ScienceAPP" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="test" rowHeight="150" id="8C1-nu-qBp" customClass="newsCell" customModule="ScienceAPP" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8C1-nu-qBp" id="faK-aV-YLZ">
@@ -1180,7 +1180,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teaching &amp; Learning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVs-mE-KaF">
-                                                    <rect key="frame" x="249" y="125" width="116" height="14.5"/>
+                                                    <rect key="frame" x="249" y="125.5" width="116" height="14"/>
                                                     <fontDescription key="fontDescription" name="Museo-500" family="Museo" pointSize="12"/>
                                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>

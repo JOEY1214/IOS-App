@@ -9,17 +9,16 @@
 import UIKit
 
 class BezierText: UIView {
-    
-    //字迹动画时间
+   
     private let duration:TimeInterval = 3
     
-    //字迹书写图层
+
     private let pathLayer = CAShapeLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //初始化字迹图层
+   
         pathLayer.frame = self.bounds
         pathLayer.isGeometryFlipped = true
         pathLayer.fillColor = UIColor.clear.cgColor
@@ -32,17 +31,17 @@ class BezierText: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //动态书写指定文字
+
     func show(text: String) {
-        //获取文字对应的贝塞尔曲线
+   
         let textPath = bezierPathFrom(string: text)
         
-        //让文字居中显示
+    
         pathLayer.bounds = textPath.cgPath.boundingBox
-        //设置笔记书写路径
+     
         pathLayer.path = textPath.cgPath
         
-        //添加笔迹书写动画
+    
         let textAnimation = CABasicAnimation.init(keyPath: "strokeEnd")
         textAnimation.duration = duration
         textAnimation.fromValue = 0
@@ -51,7 +50,6 @@ class BezierText: UIView {
         pathLayer.add(textAnimation, forKey: "strokeEnd")
     }
     
-    //将字符串转为贝塞尔曲线
     private func bezierPathFrom(string:String) -> UIBezierPath{
         let paths = CGMutablePath()
         let fontName = __CFStringMakeConstantString("SnellRoundhand")!

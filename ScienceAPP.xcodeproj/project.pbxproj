@@ -122,12 +122,12 @@
 		789CD9E820C29AB4003B3487 /* user2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789CD9E520C29AB4003B3487 /* user2.png */; };
 		78ABB25B20946FD100716887 /* NewArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB25A20946FD100716887 /* NewArticle.swift */; };
 		78ABB25C20946FD100716887 /* NewArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB25A20946FD100716887 /* NewArticle.swift */; };
-		78ABB2622094922E00716887 /* testCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* testCell.swift */; };
-		78ABB2632094922E00716887 /* testCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* testCell.swift */; };
-		78ABB2642094922E00716887 /* testCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* testCell.swift */; };
-		78ABB266209492E000716887 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* testViewController.swift */; };
-		78ABB267209492E000716887 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* testViewController.swift */; };
-		78ABB268209492E000716887 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* testViewController.swift */; };
+		78ABB2622094922E00716887 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* newsCell.swift */; };
+		78ABB2632094922E00716887 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* newsCell.swift */; };
+		78ABB2642094922E00716887 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2612094922E00716887 /* newsCell.swift */; };
+		78ABB266209492E000716887 /* newsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* newsViewController.swift */; };
+		78ABB267209492E000716887 /* newsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* newsViewController.swift */; };
+		78ABB268209492E000716887 /* newsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB265209492E000716887 /* newsViewController.swift */; };
 		78ABB26A2094A19B00716887 /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2692094A19B00716887 /* webViewController.swift */; };
 		78ABB26B2094A19B00716887 /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2692094A19B00716887 /* webViewController.swift */; };
 		78ABB26C2094A19B00716887 /* webViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABB2692094A19B00716887 /* webViewController.swift */; };
@@ -326,8 +326,8 @@
 		789CD9E120C29977003B3487 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		789CD9E520C29AB4003B3487 /* user2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user2.png; sourceTree = "<group>"; };
 		78ABB25A20946FD100716887 /* NewArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewArticle.swift; sourceTree = "<group>"; };
-		78ABB2612094922E00716887 /* testCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testCell.swift; sourceTree = "<group>"; };
-		78ABB265209492E000716887 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		78ABB2612094922E00716887 /* newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
+		78ABB265209492E000716887 /* newsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsViewController.swift; sourceTree = "<group>"; };
 		78ABB2692094A19B00716887 /* webViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webViewController.swift; sourceTree = "<group>"; };
 		78AD2ED020C7C5D500109C4B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		78AD2ED220C7CB6400109C4B /* Pchecklist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pchecklist@2x.png"; sourceTree = "<group>"; };
@@ -497,7 +497,7 @@
 			children = (
 				780808C9205FEC570048DD71 /* LaunchScreen.storyboard */,
 				788C0591206A00D200429675 /* RmiT.swift */,
-				78ABB2612094922E00716887 /* testCell.swift */,
+				78ABB2612094922E00716887 /* newsCell.swift */,
 				786BFDA620BBF36B00B1CD9F /* eventCell.swift */,
 				ECAE2AC620C6A64B001B699C /* HeaderCell.swift */,
 				783649DC207A29EE0048C32D /* CTableViewCell.swift */,
@@ -511,7 +511,7 @@
 		78F0C4D420830B7500A182EB /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				78ABB265209492E000716887 /* testViewController.swift */,
+				78ABB265209492E000716887 /* newsViewController.swift */,
 				78C7DB912078D1C2004CC1A2 /* EventViewController.swift */,
 				78D9B7FD20BC098C006FD166 /* EventsContentViewController.swift */,
 				789CD9CC20C26E56003B3487 /* duepageViewController.swift */,
@@ -1044,7 +1044,7 @@
 				78ABB26A2094A19B00716887 /* webViewController.swift in Sources */,
 				780808BE205FEC570048DD71 /* AppDelegate.swift in Sources */,
 				78D9B7FE20BC098C006FD166 /* EventsContentViewController.swift in Sources */,
-				78ABB266209492E000716887 /* testViewController.swift in Sources */,
+				78ABB266209492E000716887 /* newsViewController.swift in Sources */,
 				78D9B80520BD0E13006FD166 /* addDueDateViewController.swift in Sources */,
 				788C0592206A00D200429675 /* RmiT.swift in Sources */,
 				789CD9DE20C27C50003B3487 /* dueCell.swift in Sources */,
@@ -1055,7 +1055,7 @@
 				78ABB25B20946FD100716887 /* NewArticle.swift in Sources */,
 				786BFDA120BBE00200B1CD9F /* contentViewController.swift in Sources */,
 				786BFDA520BBF21E00B1CD9F /* event.swift in Sources */,
-				78ABB2622094922E00716887 /* testCell.swift in Sources */,
+				78ABB2622094922E00716887 /* newsCell.swift in Sources */,
 				780808C6205FEC570048DD71 /* ScienceAPP.xcdatamodeld in Sources */,
 				78AEC62820831F0500D74197 /* MainNaviViewController.swift in Sources */,
 			);
@@ -1069,12 +1069,12 @@
 				789CD9DF20C27C50003B3487 /* dueCell.swift in Sources */,
 				78080910205FEE210048DD71 /* waterview.swift in Sources */,
 				78F0C4E020830BB200A182EB /* ContactViewController.swift in Sources */,
-				78ABB2632094922E00716887 /* testCell.swift in Sources */,
+				78ABB2632094922E00716887 /* newsCell.swift in Sources */,
 				786BFDA820BBF36B00B1CD9F /* eventCell.swift in Sources */,
 				78F0C4E220830BC400A182EB /* RmiT.swift in Sources */,
 				CB02420D208C90800051C5F0 /* loginViewController.swift in Sources */,
 				EC402DC020C6770C00CC7372 /* CustomLayout.swift in Sources */,
-				78ABB267209492E000716887 /* testViewController.swift in Sources */,
+				78ABB267209492E000716887 /* newsViewController.swift in Sources */,
 				78F0C4E420830BCB00A182EB /* profileViewController.swift in Sources */,
 				78D9B7FF20BC098C006FD166 /* EventsContentViewController.swift in Sources */,
 				78F0C4DA20830B9B00A182EB /* CTableViewCell.swift in Sources */,
@@ -1099,10 +1099,10 @@
 				78F0C4E320830BCB00A182EB /* profileViewController.swift in Sources */,
 				78ABB26C2094A19B00716887 /* webViewController.swift in Sources */,
 				78F0C4D920830B9B00A182EB /* CTableViewCell.swift in Sources */,
-				78ABB2642094922E00716887 /* testCell.swift in Sources */,
+				78ABB2642094922E00716887 /* newsCell.swift in Sources */,
 				78F0C4D520830B8D00A182EB /* EventViewController.swift in Sources */,
 				789CD9CF20C26E56003B3487 /* duepageViewController.swift in Sources */,
-				78ABB268209492E000716887 /* testViewController.swift in Sources */,
+				78ABB268209492E000716887 /* newsViewController.swift in Sources */,
 				CB02420E208C90800051C5F0 /* loginViewController.swift in Sources */,
 				786BFDA920BBF36B00B1CD9F /* eventCell.swift in Sources */,
 				78080909205FED810048DD71 /* mainTabbar.swift in Sources */,

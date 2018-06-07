@@ -1,5 +1,5 @@
 //
-//  newsCell.swift
+//  testCell.swift
 //  ScienceAPP
 //
 //  Created by 张睿 on 28/4/18.
@@ -9,19 +9,19 @@
 import UIKit
 
 class newsCell: UITableViewCell {
-    @IBOutlet weak var newsimg: UIImageView!
-    @IBOutlet weak var newstitle: UILabel!
-    @IBOutlet weak var newstag: UILabel!
-    @IBOutlet weak var newsdec: UILabel!
+    @IBOutlet weak var labeldate: UILabel!
+    @IBOutlet weak var labelC: UILabel!
+    @IBOutlet weak var labelT: UILabel!
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var labeltype: UILabel!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
 }

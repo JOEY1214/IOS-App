@@ -77,22 +77,6 @@ class WelcomeViewController: UIViewController,PaperOnboardingDataSource,PaperOnb
         return 4
     }
     
-//    func onboardingConfigurationItem(_: OnboardingContentViewItem, index _: Int) {
-//
-//    }
-//    func onboardingWillTransitonToIndex(_index: Int) {
-//        if _index == 1{
-//            if self.startbutton.alpha == 1{
-//                UIView.animate(withDuration: 0.2, animations: {self.startbutton.alpha = 0})
-//            }
-//        }
-//    }
-//    func onboardingDidTransitonToIndex(_index: Int) {
-//        if _index == 2 {
-//            UIView.animate(withDuration: 0.4, animations: {self.startbutton.alpha = 1})
-//
-//        }
-//    }
 }
 
 

@@ -21,6 +21,14 @@ class loginViewController: UIViewController, GIDSignInDelegate,GIDSignInUIDelega
     @IBOutlet weak var message: UILabel!
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        
+//        if user.profile.email == nil{
+//            
+//        }else{
+//            let email = user.profile.email
+//            print(email!)
+//        }
+        
         let email = user.profile.email
         print(email!)
         
@@ -97,9 +105,6 @@ class loginViewController: UIViewController, GIDSignInDelegate,GIDSignInUIDelega
             print("OK")
         }))
         
-//        alter.addAction(UIAlertAction(title:"NO",style:UIAlertActionStyle.default,handler:{(action) in alter.dismiss(animated: true, completion: nil)
-//            print("NO")
-//        }))
         
         self.present(alter,animated: true,completion: nil)
   

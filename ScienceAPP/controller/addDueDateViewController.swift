@@ -20,6 +20,9 @@ class addDueDateViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         if titlelabel.text != "" && typelabel.text != ""  && datelabel.text != ""{
             delegate?.AddDue(title: titlelabel.text!, type: typelabel.text!, date: datelabel.text!)
             navigationController?.popViewController(animated: true)
+        }else{
+            
+            self.creatAlert (title:"Fail to add",message:"Please complete all field")
         }
     }
     
@@ -87,6 +90,18 @@ class addDueDateViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         let dateString = formatter.string(from: picker.date)
         datelabel.text = "\(dateString)"
         self.view.endEditing(true)
+        
+    }
+   
+    func creatAlert (title:String,message:String){
+        let alter = UIAlertController(title:title,message:message,preferredStyle:UIAlertControllerStyle.alert)
+        
+        alter.addAction(UIAlertAction(title:"OK",style:UIAlertActionStyle.default,handler:{(action) in alter.dismiss(animated: true, completion: nil)
+            print("OK")
+        }))
+        
+        
+        self.present(alter,animated: true,completion: nil)
         
     }
 }
