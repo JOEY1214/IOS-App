@@ -17,11 +17,23 @@ class contentViewController: UIViewController {
     var news: NewArticle?
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         labelTitle.text = news?.headline
         labeltype.text = news?.type
         labeldate.text = news?.date
         labelContent.text = news?.descri
-        self.navigationItem.title = "News"
+        //self.navigationItem.title = "News"
+        
+        if news?.imgUrl == nil {
+            image.image = #imageLiteral(resourceName: "newsimg1.png")
+        
+        }else{
+        
+            let defaultLink = "http://ec2-34-218-253-200.us-west-2.compute.amazonaws.com/csitapp/"
+        let completeLink = defaultLink + (news?.imgUrl!)!
+            image.downloadedFrom(link: completeLink)
+            
+        }
         
     }
 

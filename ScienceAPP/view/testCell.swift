@@ -14,6 +14,7 @@ class testCell: UITableViewCell {
     @IBOutlet weak var labelT: UILabel!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var labeltype: UILabel!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
     }

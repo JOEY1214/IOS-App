@@ -12,7 +12,7 @@ class mainTabbar: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.tintColor = UIColor.red
+        self.tabBar.tintColor = UIColor(red: 230/255, green: 0/255, blue: 0/255, alpha: 1)
         
     }
 

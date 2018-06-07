@@ -1,7 +1,9 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/GTMOAuth2" "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac" "${PODS_CONFIGURATION_BUILD_DIR}/TextFieldEffects" "${PODS_CONFIGURATION_BUILD_DIR}/paper-onboarding" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/Google/Frameworks" "${PODS_ROOT}/GoogleSignIn/Frameworks"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Firebase" "${PODS_ROOT}/Headers/Public/Google" $(inherited) ${PODS_ROOT}/Firebase/Core/Sources $(inherited) ${PODS_ROOT}/Firebase/Core/Sources $(inherited) ${PODS_ROOT}/Google/Headers
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/GTMOAuth2/GTMOAuth2.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/TextFieldEffects/TextFieldEffects.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/paper-onboarding/paper_onboarding.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Firebase" -isystem "${PODS_ROOT}/Headers/Public/Google"
+OTHER_LDFLAGS = $(inherited) -l"c++" -l"sqlite3" -l"stdc++" -l"z" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreLocation" -framework "CoreMotion" -framework "CoreText" -framework "MessageUI" -framework "SafariServices" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

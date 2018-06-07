@@ -20,21 +20,30 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-3R-471">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.94843202829360962" green="0.79194021224975586" blue="0.26644101738929749" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO.png" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-7b-5fm">
+                                <rect key="frame" x="105" y="291.5" width="165" height="84"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c7h-3R-471" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="e7p-l2-Fvi"/>
                             <constraint firstItem="c7h-3R-471" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="e8N-rh-yty"/>
+                            <constraint firstItem="4WR-7b-5fm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="fAY-z6-ZGr"/>
                             <constraint firstItem="c7h-3R-471" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gBM-dD-mH2"/>
                             <constraint firstItem="c7h-3R-471" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ky0-7D-ZtJ"/>
+                            <constraint firstItem="4WR-7b-5fm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xMh-Ig-3xJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="-333.60000000000002" y="-1.3493253373313345"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LOGO.png" width="165" height="84"/>
+    </resources>
 </document>

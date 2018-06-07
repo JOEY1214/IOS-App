@@ -5,7 +5,10 @@ target 'ScienceAPP' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod 'Alamofire', '~> 4.3'
-
+  pod 'Google/SignIn'
+  pod 'TextFieldEffects'
+  pod 'Firebase/Core'
+  pod 'paper-onboarding'
   # Pods for ScienceAPP
 
   target 'ScienceAPPTests' do

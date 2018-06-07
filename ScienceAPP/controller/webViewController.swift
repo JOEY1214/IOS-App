@@ -15,6 +15,7 @@ class webViewController: UIViewController {
         self.dismiss(animated: false, completion: nil)
         
     }
+    
     var url: String?
     @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {

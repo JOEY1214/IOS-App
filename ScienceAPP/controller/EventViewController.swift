@@ -12,19 +12,22 @@ class EventViewController: UIViewController,UICollectionViewDataSource,UICollect
   
     var events = [event]()
     @IBOutlet weak var eventcollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         eventcollectionView.dataSource = self
         eventcollectionView.delegate = self
-        self.navigationController?.navigationBar.barTintColor =
-            UIColor.white
-        let image = UIImage(named: "rmit5")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let image = UIImage(named: "LOGO111")
         self.navigationItem.titleView = UIImageView(image: image)
-        fetchEvent()
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        //        let layout = CustomLayout()
+//        let frame = CGRect(x:0, y:20, width: view.bounds.size.width,
+//                           height:view.bounds.height-20)
+//        self.eventcollectionView = UICollectionView(frame: frame, collectionViewLayout:layout)
+//        self.eventcollectionView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        fetchEvent()
+        
     }
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,14 +36,23 @@ class EventViewController: UIViewController,UICollectionViewDataSource,UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          let cell = eventcollectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for:indexPath) as! eventCell
-        cell.layer.cornerRadius = 10
-        cell.layer.borderWidth = 2
+        cell.layer.cornerRadius = 5
+        cell.layer.borderWidth = 1.5
         cell.layer.borderColor = UIColor.white.cgColor
         cell.titleLabel.text = events[indexPath.row].eventTitle
-        cell.datelabel.layer.cornerRadius = 8
-        cell.datelabel.layer.borderWidth = 1.5
+        cell.datelabel.layer.cornerRadius = cell.datelabel.layer.frame.height/2
+        cell.datelabel.clipsToBounds = true
         cell.datelabel.layer.borderColor = UIColor.white.cgColor
         cell.datelabel.text = events[indexPath.row].startDate
+       
+        if events[indexPath.row].envenImg == nil{
+            cell.eventimg.image = #imageLiteral(resourceName: "newsimg1.png")
+            
+        }else{
+            let defaultLink = "http://ec2-34-218-253-200.us-west-2.compute.amazonaws.com/csitapp/"
+            let completeLink = defaultLink + events[indexPath.row].envenImg!
+            cell.eventimg.downloadedFrom(link: completeLink)
+        }
          return cell
     }
 
@@ -71,11 +83,10 @@ class EventViewController: UIViewController,UICollectionViewDataSource,UICollect
                     
                     let Event = event(eventTitle:articlesFromJson["title"]! as? String,eventContent:articlesFromJson["content"]! as? String, startDate:articlesFromJson["start_date"]!as? String,creatDate:articlesFromJson["create_date"]! as? String,envenImg:articlesFromJson["image_path"]! as? String)
                     self.events.append(Event)
-                    
                 }
                 
                 DispatchQueue.main.async {
-                    self.eventcollectionView.reloadData()
+                   self.eventcollectionView.reloadData()
                 }
             }catch let error{
                 print(error)

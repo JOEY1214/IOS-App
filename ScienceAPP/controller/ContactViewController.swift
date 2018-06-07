@@ -7,27 +7,29 @@
 //
 
 import UIKit
+import Google
+import GoogleSignIn
 
 var contactIndex = 0
 
 class ContactViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
-   
     
     let cellId = "cell"
-    @IBOutlet weak var search: UISearchBar!
     @IBOutlet weak var contactTableView: UITableView!
-    var currentContactD = [contacter]()
+    var deanContact = [contacter]()
+    var serverContact = [contacter]()
+    //var twoArry :[[contacter]] = [[]]
     var Department = [DepartmentName]()
-    var currentContact = [contacter]()
-    
-    var twoArry = [[contacter(name: "Owen Shemansky", icon: "rmitlogo",postion:"Senior Manager, Planning & Resources",location:"14.10.06",tel:"9925 3632"),contacter(name: "Dr Paul Perry", icon: "Ray Allen",postion:"Business Development Manager",location:"14.10.33",tel:"9925 9671"),contacter(name: "Boogie Balsan", icon: "Ray Allen",postion:"Manager, Academic & Student Operations",location:"14.10.35",tel:"9925 3012")],
-        [contacter(name: "Dora Poulakis", icon: "Ray Allen",postion:"School Services Coordinator",location:"14.10.35",tel:"9925 9583"),contacter(name: "Mardi O’Donnell", icon: "Ray Allen",postion:"School Services Advisor",location:"14.10.35",tel:"9925 1873")]]
+    var twoArry = [[contacter(name: "Owen Shemansky", icon: "user2",postion:"Senior Manager, Planning & Resources",location:"14.10.06",tel:"9925 3632", department: "Office of the Executive Dean"),contacter(name: "Dr Paul Perry", icon: "user2",postion:"Business Development Manager",location:"14.10.33",tel:"9925 9671", department: "Office of the Executive Dean"),contacter(name: "Boogie Balsan", icon: "user2",postion:"Manager, Academic & Student Operations",location:"14.10.35",tel:"9925 3012", department: "Office of the Executive Dean")],
+                   [contacter(name: "Dora Poulakis", icon: "user2",postion:"School Services Coordinator",location:"14.10.35",tel:"9925 9583", department: "School Services"),contacter(name: "Mardi O’Donnell", icon: "user2",postion:"School Services Advisor",location:"14.10.35",tel:"9925 1873", department: "School Services")]]
     
   
-    private func setUpsearchBar(){
+    @IBAction func LogOutFunction(_ sender: Any) {
+        GIDSignIn.sharedInstance().signOut()
+        let mainLogin = self.storyboard?.instantiateViewController(withIdentifier:"loginViewController") as! loginViewController
+        self.navigationController?.pushViewController(mainLogin, animated: true)
         
-        search.delegate = self
-        search.barTintColor = UIColor.white
+        self.dismiss(animated: false, completion: nil)
         
     }
     
@@ -45,20 +47,16 @@ class ContactViewController: UIViewController,UITableViewDataSource,UITableViewD
         contactIndex = indexPath.row
         performSegue(withIdentifier: "profile", sender:self)
     }
-   
-    /*func alterLayout(){
-        contactTableView.tableHeaderView = UIView()
-        contactTableView.estimatedSectionHeaderHeight = 40
-    }*/
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-       return 80
+       return 90
    }
-   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let cell = contactTableView.dequeueReusableCell(withIdentifier:"cell") as! header
-    cell.name.text = Department[section].Dname
-    cell.function.text = Department[section].description
-    cell.backgroundColor = UIColor.darkGray
+  
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let cell = contactTableView.dequeueReusableCell(withIdentifier:"headercell") as! HeaderCell
+    cell.departmentLabel.text = Department[section].Dname
+    cell.functionLabel.text = Department[section].description
+    
     return cell
     
    }
@@ -69,41 +67,86 @@ class ContactViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contactTableView.dequeueReusableCell(withIdentifier: "contactcell") as! CTableViewCell
         cell.cview.layer.cornerRadius = cell.cview.frame.height / 2
-        cell.cview.layer.borderWidth = 1.5
-        cell.cview.layer.borderColor = UIColor.black.cgColor
+//        cell.cview.layer.borderWidth = 1.5
+//        cell.cview.layer.borderColor = UIColor.black.cgColor
         cell.cimg.layer.cornerRadius = cell.cimg.frame.height / 2
         cell.cimg.clipsToBounds = true
         cell.cname.text = twoArry[indexPath.section][indexPath.row].name
-        cell.arrow.image = UIImage(named: "003arrows")
-        cell.cimg.image = UIImage(named:twoArry[indexPath.section][indexPath.row].icon)
-       // cell.backgroundColor = UIColor.lightGray
+        cell.arrow.image = UIImage(named: "arrows")
+        cell.cimg.image = UIImage(named:twoArry[indexPath.section][indexPath.row].icon!)
+      
         
         return cell
     }
     
-    //search bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else{
-            contactTableView.reloadData()
-            return
+    func fetchContact(){
+       
+        let urlRequest = URLRequest(url: URL(string:"http://titan.csit.rmit.edu.au/~s3479320/iosApp/contact.php")!)
+        let task = URLSession.shared.dataTask(with: urlRequest){ (data,response,error) in
+
+            if error != nil{
+                print("error")
+                return
+            }
+
+            do{
+
+                let json = try JSONSerialization.jsonObject(with: data!, options:[]) as! [Any]
+
+                for jsonResult in json{
+
+                    let articlesFromJson = jsonResult as! [String:AnyObject]
+
+                    let contact = contacter(name:(articlesFromJson["name"]! as? String)!,icon:(articlesFromJson["image_path"]! as? String)!, postion:(articlesFromJson["identity"]!as? String)!,location:(articlesFromJson["office_address"]! as? String)!,tel:(articlesFromJson["phone"]! as? String)!, department: (articlesFromJson["department"]! as? String)!)
+                
+                    if contact.department == "School Services"{
+
+                       
+                    }else{
+
+
+
+                    }
+
+                }
+
+                DispatchQueue.main.async {
+                    self.contactTableView.reloadData()
+                }
+            }catch let error{
+                print(error)
+            }
+
+
         }
-        currentContactD = twoArry[0].filter({contacter -> Bool in
-           contacter.name.lowercased().contains(searchText.lowercased())
-            
-        })
-        currentContact = twoArry[1].filter({contacter -> Bool in
-            contacter.name.lowercased().contains(searchText.lowercased())
-            
-        })
-        contactTableView.reloadData()
+
+        task.resume()
     }
- 
+
+//    //search bar
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        guard !searchText.isEmpty else{
+//            contactTableView.reloadData()
+//            return
+//        }
+//
+//        contactTableView.reloadData()
+//    }
+    
+    func setUpNaviBar(){
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let searchcontroller = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchcontroller
+        navigationItem.hidesSearchBarWhenScrolling = true
+        //searchcontroller.searchBar. = UIColor.white
+
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? profileViewController {
@@ -112,41 +155,32 @@ class ContactViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentContactD = twoArry[0]
-        currentContact = twoArry[1]
-        contactTableView.register(header.self, forCellReuseIdentifier: cellId)
-        self.contactTableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
+        setUpNaviBar()
         setUpSection()
-        setUpsearchBar()
-        //alterLayout()
         contactTableView.delegate = self
         contactTableView.dataSource  = self
-        self.navigationItem.titleView = search
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        //let image = UIImage(named: "rmit5")
-       // self.navigationItem.titleView = UIImageView(image: image)
-    }
+        let image = UIImage(named: "LOGO11")
+        self.navigationItem.titleView = UIImageView(image: image)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
     }
  
 }
 
 class contacter {
-    let name : String
-    let icon : String
-    let postion: String
-    let location : String
-    let tel : String
+    let name : String?
+    let icon : String?
+    let postion: String?
+    let location : String?
+    let tel : String?
+    let department : String?
     
-    init(name:String,icon:String,postion:String,location:String,tel:String) {
+    init(name:String,icon:String,postion:String,location:String,tel:String,department:String) {
         self.name = name
         self.icon = icon
         self.postion = postion
         self.location = location
         self.tel = tel
+        self.department = department
     }
 }
 
@@ -158,55 +192,6 @@ class DepartmentName {
         
         self.Dname = Dname
         self.description = description
-    }
-}
-
-public class header: UITableViewCell{
-    
-    override init(style:UITableViewCellStyle,reuseIdentifier:String?){
-        super.init(style: style, reuseIdentifier:reuseIdentifier)
-        setupViews()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let name: UILabel = {
-        let label = UILabel()
-        label.text = "Department name"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name:"Museo",size:18)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-         label.textColor = UIColor.white
-       
-        
-        return label
-    }()
-    
-    let function: UILabel = {
-        let label = UILabel()
-        label.text = "Function"
-        label.font = UIFont(name:"Avenir",size:13)
-        label.textColor = UIColor.white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    func setupViews(){
-        
-        addSubview(name)
-        addSubview(function)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":name]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-55-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":name]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":function]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":function]))
-        
-        
     }
 }
 

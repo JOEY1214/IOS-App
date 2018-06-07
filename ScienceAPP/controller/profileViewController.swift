@@ -20,12 +20,13 @@ class profileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = UIImage(named: "rmit5")
+          navigationItem.largeTitleDisplayMode = .never
+        let image = UIImage(named: "LOGO11")
         self.navigationItem.titleView = UIImageView(image: image)
         self.Icon.layer.cornerRadius = Icon.frame.size.width/2
         self.Icon.clipsToBounds = true
-        self.Icon.layer.borderWidth = 2
-        self.Icon.layer.borderColor = UIColor.white.cgColor
+//        self.Icon.layer.borderWidth = 0
+//        self.Icon.layer.borderColor = UIColor.red.cgColor
         name.text = ContactDetial?.name
         position.text = ContactDetial?.postion
         tel.text = ContactDetial?.tel

@@ -7,23 +7,27 @@
 //
 import UIKit
 import Alamofire
-class loginViewController: UIViewController {
+import GoogleSignIn
+import Google
+import Firebase
+
+class loginViewController: UIViewController, GIDSignInDelegate,GIDSignInUIDelegate{
     
-    let URL_USER_LOGIN = "http://ec2-34-217-69-44.us-west-2.compute.amazonaws.com/php/ios/login.php"
+   
+    let URL_USER_LOGIN = "http://titan.csit.rmit.edu.au/~s3479320/iosApp/login.php"
+    let URL_USER_REGISTER = "http://titan.csit.rmit.edu.au/~s3479320/iosApp/register.php"
     let defaultValues = UserDefaults.standard
     
-    @IBOutlet weak var StudentNum: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var RmitLogo: UILabel!
-    @IBAction func LoginFunction(_ sender: UIButton) {
+    @IBOutlet weak var message: UILabel!
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let email = user.profile.email
+        print(email!)
         
-        //getting the username and password
         let parameters: Parameters=[
-            "username":StudentNum.text!,
-            "password":password.text!
+            "username":user.profile.email!
         ]
         
-        //making a post request
         Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters).responseJSON
             {
                 response in
@@ -40,48 +44,83 @@ class loginViewController: UIViewController {
                         let user = jsonData.value(forKey: "user") as! NSDictionary
                         
                         //getting user values
-                        let userId = user.value(forKey: "id") as! Int
+                        let userAuthority = user.value(forKey: "authority") as! String
                         let userName = user.value(forKey: "username") as! String
                         
                         
                         //saving user values to defaults
-                        self.defaultValues.set(userId, forKey: "userid")
+                        self.defaultValues.set(userAuthority, forKey: "userAuthority")
                         self.defaultValues.set(userName, forKey: "username")
                         
-                        
-                        //switching the screen
-                        let MainTabbar = self.storyboard?.instantiateViewController(withIdentifier:"mainTabbar") as! mainTabbar
-                        self.navigationController?.pushViewController(MainTabbar, animated: true)
-                        
-                        self.dismiss(animated: false, completion: nil)
-                        
+                        if userAuthority == "visitor"{
+                            //self.message.text = "You don't have atourity to access"
+                            self.creatAlert(title: "Request Denied", message: "Your account does not have authority to access")
+                        }else{
+                            //switching the screen
+                            let MainTabbar = self.storyboard?.instantiateViewController(withIdentifier:"welcome") as! WelcomeViewController
+                            self.navigationController?.pushViewController(MainTabbar, animated: true)
+                            
+                            self.dismiss(animated: false, completion: nil)
+                        }
                     }else{
                         //error message in case of invalid credential
-                        self.RmitLogo.text = "Invalid username or password"
+                       self.creatAlert(title: "Request Denied", message: "Your account does not have authority to access")
+                        let parameters: Parameters=[
+                            "username":user.profile.email!
+                        ]
+                        Alamofire.request(self.URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON
+                            {
+                                response in
+                                //printing response
+                                print(response)
+                                
+                                
+                                
+                        }
+                        
+                        
                     }
                 }
                 
                 
         }
-        
-        
-        
+
     }
+    
+    
+
+    
+    func creatAlert (title:String,message:String){
+        let alter = UIAlertController(title:title,message:message,preferredStyle:UIAlertControllerStyle.alert)
+        
+        alter.addAction(UIAlertAction(title:"OK",style:UIAlertActionStyle.default,handler:{(action) in alter.dismiss(animated: true, completion: nil)
+            print("OK")
+        }))
+        
+//        alter.addAction(UIAlertAction(title:"NO",style:UIAlertActionStyle.default,handler:{(action) in alter.dismiss(animated: true, completion: nil)
+//            print("NO")
+//        }))
+        
+        self.present(alter,animated: true,completion: nil)
+  
+    }
+        
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.login.layer.cornerRadius = self.login.layer.frame.height / 2
-        //self.login.layer.borderWidth = 2.5
-        self.StudentNum.layer.cornerRadius = 5
-        self.StudentNum.layer.borderWidth = 2
-        self.password.layer.cornerRadius = 5
-        self.password.layer.borderWidth = 2
-        self.password.layer.borderColor = UIColor.lightGray.cgColor
-        self.StudentNum.layer.borderColor = UIColor.lightGray.cgColor
-        // self.login.layer.borderColor = UIColor.black.cgColor
-        let singleWaterWaveView = waterview(frame:view.bounds)
-        view.addSubview(singleWaterWaveView)
-        view.sendSubview(toBack: singleWaterWaveView)
+       
+//        let singleWaterWaveView = waterview(frame:view.bounds)
+//        view.addSubview(singleWaterWaveView)
+//        view.sendSubview(toBack: singleWaterWaveView)
+        
+        //google login part
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        let googleSignInButton = GIDSignInButton()
+     
+        googleSignInButton.center = view.center
+        view.addSubview(googleSignInButton)
         
         self.navigationController?.isNavigationBarHidden = true
     }
